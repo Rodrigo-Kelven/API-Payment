@@ -15,3 +15,7 @@ Baseado na ideia de facilitar a vida de usuarios de bibliotecas que queiram alug
 - Cadastro de usuarios
 - Cadastro de livros
 - Realizacao de estatisticas de livros mais usados pelos usuarios.
+
+
+
+## Estrutura do projeto.
