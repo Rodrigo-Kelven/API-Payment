@@ -4,7 +4,7 @@ from config.config import LogRequestMiddleware, rate_limit_middleware
 from routes.all_routes import all_Rotes
 
 
-app = FastAPI(
+app = FastAPI( 
     debug=True,
     title="API Based with FastAPI",
     version="0.0.1",
