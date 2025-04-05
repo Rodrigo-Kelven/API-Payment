@@ -3,6 +3,14 @@ from fastapi import Request, HTTPException
 from fastapi import status
 import logging
 import time
+from fastapi import FastAPI, Depends, HTTPException, Request, Response
+from fastapi_limiter import FastAPILimiter
+from fastapi_limiter.depends import RateLimiter
+import redis.asyncio as redis
+from contextlib import asynccontextmanager
+from math import ceil
+
+REDIS_URL = "redis://127.0.0.1:6379"
 
 
 logging.basicConfig(level=logging.INFO)
@@ -67,7 +75,31 @@ async def rate_limit_middleware(request: Request, call_next):
 # Os cabeçalhos X-RateLimit-Limit, X-RateLimit-Remaining e X-RateLimit-Reset são adicionados à resposta para informar o cliente sobre o limite de requisições1.
 """
 
+# rate limit
+async def service_name_identifier(request: Request):
+    return request.headers.get("Service-Name")
 
+async def custom_callback(request: Request, response: Response, pexpire: int):
+    expire = ceil(pexpire / 1000)
+    raise HTTPException(
+        status_code=429,
+        detail=f"Too Many Requests. Retry after {expire} seconds.",
+        headers={"Retry-After": str(expire)},
+    )
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    redis_connection = redis.from_url(REDIS_URL, encoding="utf8")
+    await FastAPILimiter.init(
+        redis=redis_connection,
+        identifier=service_name_identifier,
+        http_callback=custom_callback,
+    )
+    yield
+    await FastAPILimiter.close()
+
+
+# CORS configurado
 def cors(app):
     from fastapi.middleware.cors import CORSMiddleware
 
