@@ -1,22 +1,57 @@
-# Ignorar arquivos de cache do Python
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
 
-# Ignorar arquivos de configuração do sistema
-.DS_Store
-Thumbs.db
-
-# Ignorar arquivos de ambiente virtual
+# Ambiente virtual
 venv/
 env/
+ENV/
+.venv/
+.env/
 
-# Ignorar arquivos de log
+# Arquivos de configuração
+*.env
+*.local
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de log
 *.log
 
-# Ignorar arquivos de dependências
+# Arquivos de cache
+*.cache
 *.egg-info/
 dist/
 build/
 
-# Ignorar scripts de shell temporários
-*.sh~
+# Outros
+*.DS_Store
+*.egg
+*.egg-info/
+*.pyc
+*.pyo
+*.pyd
+*.coverage
+*.cover
+*.hypothesis/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+*.pot
+*.py[cod]
+*.pyd
+*.pyo
+*.pdb
+*.egg-info/
+*.whl
