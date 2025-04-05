@@ -62,9 +62,6 @@ Baseado na ideia de facilitar a crição de apis do absoluto, este projeto é um
     - #### Otimização de Consultas:
         - Otimizar consultas ao banco de dados, utilizando índices e evitando consultas N+1.
     
-    - #### Uso de CDN (Content Delivery Network):
-        - Utilizar uma CDN para distribuir conteúdo estático e melhorar a latência para usuários em diferentes regiões geográficas.
-    
     - #### Asynchronous Processing:
         - Utilizar processamento assíncrono para operações que podem ser realizadas em segundo plano, melhorando a capacidade de resposta da API.
     
