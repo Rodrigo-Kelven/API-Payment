@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status, Query
 from fastapi_limiter.depends import RateLimiter
 from typing import List
-
 from config.config import lifespan
 
 route_based = APIRouter()
