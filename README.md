@@ -93,3 +93,7 @@ Baseado na ideia de facilitar a crição de apis do absoluto, este projeto é um
     ├── schemas/
     │   └── schemas.py         # Definições de esquemas de dados (ex: Pydantic)
     └── scr.sh                 # Script de inicialização ou automação
+
+
+## Autores
+- [@Rodrigo_Kelven](https://github.com/Rodrigo-Kelven)
