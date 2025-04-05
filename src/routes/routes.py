@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Request, Response, status, Query
 from fastapi_limiter.depends import RateLimiter
+from typing import List
 
 from config.config import lifespan
 
@@ -46,3 +47,25 @@ async def search_handler():
 )
 async def upload_handler():
     return {"msg": "This endpoint has a rate limit of 2 requests per 10 seconds."}
+
+
+# Simulando uma lista de itens
+items = [{"item_id": i, "name": f"Item {i}"} for i in range(1, 101)]  # 100 itens
+
+@route_based.get(
+    path="/items/",
+    response_model=List[dict],
+    description="Rota com pagination",
+    name="Route with pagination",
+    response_description="With Pagination"
+)
+async def get_items(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(10, gt=0)
+):
+    """
+    Retorna uma lista de itens com paginação.
+    - **skip**: Número de itens a serem pulados (offset).
+    - **limit**: Número máximo de itens a serem retornados.
+    """
+    return items[skip: skip + limit]
