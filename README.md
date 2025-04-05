@@ -81,3 +81,15 @@ Baseado na ideia de facilitar a crição de apis do absoluto, este projeto é um
 
 
 ## Estrutura do projeto.
+    src/
+    ├── config/
+    │   ├── config.py          # Configurações da aplicação (ex: DB, API keys)
+    ├── main.py                # Ponto de entrada da aplicação FastAPI
+    ├── models/
+    │   └── models.py          # Definições de modelos de dados (ex: ORM)
+    ├── routes/
+    │   ├── all_routes.py      # Agrupamento de todas as rotas
+    │   └── routes.py          # Definições de rotas específicas
+    ├── schemas/
+    │   └── schemas.py         # Definições de esquemas de dados (ex: Pydantic)
+    └── scr.sh                 # Script de inicialização ou automação
