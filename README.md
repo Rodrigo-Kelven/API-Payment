@@ -45,10 +45,38 @@ Baseado na ideia de facilitar a crição de apis do absoluto, este projeto é um
         - Utilize tokens CSRF para proteger endpoints que alteram o estado do servidor.
 
 
-## Funcionalidade
-- Cadastro de usuarios
-- Cadastro de livros
-- Realizacao de estatisticas de livros mais usados pelos usuarios.
+- ### Melhores Práticas de Performance
+
+    - #### Cache:
+        - Utilize caching (como Redis ou Memcached) para armazenar respostas de requisições frequentes e reduzir a carga no servidor.
+    
+    - #### Paginação:
+        - Implemente paginação em endpoints que retornam listas grandes de dados para evitar sobrecarga e melhorar a performance.
+    
+    - #### Compressão de Resposta:
+        - Utilize compressão (como Gzip) para reduzir o tamanho das respostas e melhorar o tempo de carregamento.
+    
+    - #### Minimização de Dados:
+        - Retorne apenas os dados necessários nas respostas da API, evitando sobrecarregar a rede com informações desnecessárias.
+    
+    - #### Otimização de Consultas:
+        - Otimize consultas ao banco de dados, utilizando índices e evitando consultas N+1.
+    
+    - #### Uso de CDN (Content Delivery Network):
+        - Utilize uma CDN para distribuir conteúdo estático e melhorar a latência para usuários em diferentes regiões geográficas.
+    
+    - #### Asynchronous Processing:
+        - Utilize processamento assíncrono para operações que podem ser realizadas em segundo plano, melhorando a capacidade de resposta da API.
+    
+    - #### Monitoramento de Performance:
+        - Implemente ferramentas de monitoramento de performance para identificar gargalos e otimizar a API continuamente.
+    
+    - #### Versionamento da API:
+        - Utilize versionamento de API para garantir que mudanças não quebrem a compatibilidade com clientes existentes.
+    
+    - #### Documentação Clara:
+        - Forneça documentação clara e abrangente para a API, facilitando a integração e o uso por desenvolvedores.
+
 
 
 
