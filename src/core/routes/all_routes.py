@@ -1,10 +1,11 @@
 from enum import Enum
 from core.routes.routes import routes_auth_auten
 
-
+# tags da api OAthu2
 class Tags(Enum):
     OAuth2 = "OAuth2"
 
+# prefix da api OAth2
 class Prefix(Enum):
     prefix = "/api-auten_auth"
 
