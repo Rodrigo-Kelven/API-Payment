@@ -10,6 +10,7 @@ import redis.asyncio as redis
 from contextlib import asynccontextmanager
 from math import ceil
 
+# redis in docker
 REDIS_URL = "redis://127.0.0.1:6379"
 
 
@@ -99,7 +100,7 @@ async def lifespan(app: FastAPI):
     await FastAPILimiter.close()
 
 
-# CORS configurado
+# CORS configurado, caso tenha mais implementacoes, documente!
 def cors(app):
     from fastapi.middleware.cors import CORSMiddleware
 
