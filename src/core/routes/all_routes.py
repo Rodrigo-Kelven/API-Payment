@@ -1,6 +1,7 @@
 from enum import Enum
 from core.routes.routes import routes_auth_auten
 
+
 class Tags(Enum):
     OAuth2 = "OAuth2"
 
