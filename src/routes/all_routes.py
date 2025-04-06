@@ -3,15 +3,18 @@ from enum import Enum
 
 from routes.routes import route_based
 
+# preximo da api geral
 class PrefixRouter(Enum):
     api = "/api/v1"
 
+# tags da api home
 class Tags(Enum):
     home = "Home"
 
 
 routes_all = APIRouter()
 
+# funcao centralizadora de rotas
 def all_Rotes(app):
     app.include_router(route_based, prefix=PrefixRouter.api.value, tags=[Tags.home])
 

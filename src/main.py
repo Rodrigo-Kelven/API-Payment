@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from config.config import lifespan
+from config.config import lifespan, cors
 from routes.all_routes import all_Rotes
 
 from core.config.config_db import Base, engine
@@ -37,8 +37,12 @@ app.add_middleware(LogRequestMiddleware)
 # Adiciona o middleware de tratamento de exceções
 app.add_middleware(ExceptionHandlingMiddleware)
 
-# funcao CORS
+# funcao CORS da api de OAthu2
 config_CORS(app)
+
+# funcao CORS da api Based
+cors(app)
+
 
 if __name__ == "__main__":
     import uvicorn
