@@ -13,7 +13,7 @@ app = FastAPI(
     "Baseado na ideia de facilitar a crição de apis do absoluto," \
     "este projeto é uma ótima opção para os que se perguntem do que é composta uma" \
     "api excelente em termos de seguranca, performance e escalabilidade/flexibilidade.",
-    version="0.0.6"
+    version="0.1.0"
     )
 
 all_Rotes(app)
