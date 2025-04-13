@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from config.config import lifespan, cors
+from config.config import  cors
 from routes.all_routes import all_Rotes
 
 from core.config.config_db import Base, engine
@@ -9,7 +9,6 @@ from core.config.config import *
 
 
 app = FastAPI(
-    lifespan=lifespan,
     debug=True,
     title="API Based with FastAPI",
     description="API Based é um projeto open source." \
