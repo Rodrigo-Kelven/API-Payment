@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, Request, Response
-from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi import Request, HTTPException
 from fastapi import status
 import logging
