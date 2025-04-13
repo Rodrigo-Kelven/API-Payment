@@ -1,5 +1,5 @@
 # Api Based
-## Versão 0.1.0
+## Versão 0.1.2
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
 ![FastAPI](https://img.shields.io/badge/FastAPI-%23FF4F00.svg?style=for-the-badge&logo=fastapi&logoColor=white)
 ![GraphQL](https://img.shields.io/badge/GraphQL-%23E10098.svg?style=for-the-badge&logo=graphql&logoColor=white)
@@ -91,6 +91,19 @@ Baseado na ideia de facilitar a crição de apis do absoluto, este projeto é um
     ├── schemas/
     │   └── schemas.py         # Definições de esquemas de dados (ex: Pydantic)
     └── scr.sh                 # Script de inicialização ou automação
+
+
+## Subindo projeto com Docker:
+### Docker
+```bash
+  docker build -t myapp .
+  docker run -p 8000:8000 myapp
+```
+### Docker Compose
+```bash
+  docker-compose build
+  docker-compose up
+```
 
 
 ## Autores
