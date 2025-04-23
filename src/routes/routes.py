@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status, Query
 from fastapi_limiter.depends import RateLimiter
 from typing import List
+from core.config.config import app_logger
 
 route_based = APIRouter()
 
@@ -12,6 +13,9 @@ route_based = APIRouter()
     name="Route Name"
 )
 async def routeHome():
+    app_logger.info(
+        msg="Route /test funcionando"
+    )
     return {"Hello Word"}
 
 
