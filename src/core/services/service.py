@@ -5,8 +5,17 @@ from core.config.config_db import  AsyncSessionLocal
 from core.config.config import app_logger, auth_logger
 from core.models.models import UserDB, Role
 from typing import List, Annotated
-from core.auth.auth import *
-
+from core.auth.auth import (
+    authenticate_user_by_email,
+    ACCESS_TOKEN_EXPIRE_MINUTES,
+    create_access_token,
+    timedelta,
+    get_current_active_user,
+    check_permissions,
+    get_password_hash,
+    select,
+    get_user
+    )
 from sqlalchemy.exc import IntegrityError
 
 

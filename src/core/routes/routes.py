@@ -4,7 +4,6 @@ from core.config.config_db import AsyncSessionLocal
 from typing import List, Annotated
 from core.auth.auth import OAuth2PasswordRequestForm, get_current_active_user, check_permissions, Role
 from core.services.service import ServicesAuth
-
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
