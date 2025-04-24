@@ -1,34 +1,45 @@
-from fastapi import FastAPI
-from config.config import  cors
+from fastapi import FastAPI, Request
+from core.config.config_db import Base_auth, engine_auth
 from routes.all_routes import all_Rotes
-
-from core.config.config_db import Base, engine
+from core.auth.auth import ExceptionHandlingMiddleware
+from core.config.config import LogRequestMiddleware
+from core.config.config import config_CORS
+from core.config.config_db import engine_auth, Base_auth
+from core.config.config import  db_logger
 from core.routes.all_routes import all_routes
-from core.auth.auth import *
-from core.config.config import *
+
 
 
 app = FastAPI(
+    title="API Library with FastAPI",
     debug=True,
-    title="API Based with FastAPI",
-    description="API Based é um projeto open source." \
-    "Baseado na ideia de facilitar a crição de apis do absoluto," \
-    "este projeto é uma ótima opção para os que se perguntem do que é composta uma" \
-    "api excelente em termos de seguranca, performance e escalabilidade/flexibilidade.",
-    version="0.1.0"
-    )
+    summary="Api Library",
+    version="1.1.12",
+    description="A Api Library é uma API Library projetada para facilitar a integração de diferentes serviços e plataformas," \
+                "permitindo que desenvolvedores criem soluções robustas e escaláveis. Com uma arquitetura modular e flexível," \
+                "a Api Library oferece uma ampla gama de funcionalidades para gerenciar dados, realizar autenticação, processar pagamentos e muito mais."
+)
 
-
-# inicia todas as rotas implementadas nesta api
+# Adiciona as rotas
 all_Rotes(app)
-# incia as rotas de authenticacao
 all_routes(app)
 
-# tem que ficar no main porque ao ser iniciado, as tabelas no db seram criadas imediatamente
-print("Criando tabelas no banco de dados...")
-Base.metadata.create_all(bind=engine)
-print("Tabelas criadas.")
+@app.on_event("startup")
+async def startup_event():
+    try:
+        # Criação das tabelas no banco de dados de usuários
+        async with engine_auth.begin() as conn:
+            await conn.run_sync(Base_auth.metadata.create_all)
+            db_logger.info("Tabela UserDB criada com sucesso.")
 
+    except Exception as e:
+        db_logger.error(f"Erro ao criar tabelas: {str(e)}.")
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    await engine_auth.dispose()
+    db_logger.info("Conexões com os bancos de dados encerradas.")
 
 # Adiciona o middleware ao FastAPI
 app.add_middleware(LogRequestMiddleware)
@@ -36,13 +47,7 @@ app.add_middleware(LogRequestMiddleware)
 # Adiciona o middleware de tratamento de exceções
 app.add_middleware(ExceptionHandlingMiddleware)
 
-# funcao CORS da api de OAthu2
+# Configuração de CORS
 config_CORS(app)
 
-# funcao CORS da api Based
-cors(app)
 
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
