@@ -21,7 +21,9 @@ app = FastAPI(
 )
 
 # Adiciona as rotas
+# routes home
 all_Rotes(app)
+# all routes of OAuthu2
 all_routes(app)
 
 @app.on_event("startup")
