@@ -11,7 +11,6 @@ from core.models.models import UserDB, Role
 from starlette.requests import Request
 from sqlalchemy.future import select  # Para consultas assíncronas
 from typing import Annotated
-import logging
 import jwt
 
 

@@ -9,7 +9,7 @@ class Tags(Enum):
 class Prefix(Enum):
     prefix = "/api-auten_auth"
 
-# funcao de uniao de todas as rotas existentes
+# funcao de uniao de todas as rotas existentes sobre OAthu2
 def all_routes(app):
     app.include_router(routes_auth_auten, tags=[Tags.OAuth2], prefix=Prefix.prefix.value)
 
