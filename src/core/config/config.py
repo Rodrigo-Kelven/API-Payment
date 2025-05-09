@@ -103,7 +103,7 @@ class LogRequestMiddleware(BaseHTTPMiddleware):
 
 # - key_func = retorna o endereço IP do cliente, que é usado como chave para a limitação de taxa.
 # - default_limits = Isso significa que, por padrão, todas as rotas terão um limite de 5 requisições por minuto
-# - storage_uri = Define o Redis para armazenar os dados de limitação de requisição.
+# - storage_uri = Define o Redis para armazenar os dados de limitação de requisição. "my-redis" é o nome do container!
 limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["5 per minute"],
