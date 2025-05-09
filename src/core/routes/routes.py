@@ -4,14 +4,10 @@ from core.config.config_db import AsyncSessionLocal
 from typing import List, Annotated
 from core.auth.auth import OAuth2PasswordRequestForm, get_current_active_user, check_permissions, Role
 from core.services.service import ServicesAuth
-from slowapi import Limiter
-from slowapi.util import get_remote_address
-
+from core.config.config import limiter
 
 routes_auth_auten = APIRouter()
 
-# decoracor do rate limit
-limiter = Limiter(key_func=get_remote_address)
 
 
 # Rota de login

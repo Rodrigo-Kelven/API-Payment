@@ -6,6 +6,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from logging.handlers import RotatingFileHandler
 import logging
 import os
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 
 
 # Configurações e chave secreta
@@ -95,3 +97,16 @@ class LogRequestMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         logging.info(f"Resposta enviada com status {response.status_code}")
         return response
+    
+
+# decoracor do rate limit
+
+# - key_func = retorna o endereço IP do cliente, que é usado como chave para a limitação de taxa.
+# - default_limits = Isso significa que, por padrão, todas as rotas terão um limite de 5 requisições por minuto
+# - storage_uri = Define o Redis para armazenar os dados de limitação de requisição.
+limiter = Limiter(
+    key_func=get_remote_address,
+    default_limits=["5 per minute"],
+    storage_uri="redis://my-redis:6379/2",
+    )
+

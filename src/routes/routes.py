@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status, Query
 from fastapi_limiter.depends import RateLimiter
 from typing import List
-from core.config.config import app_logger
+from core.config.config import app_logger, limiter
 
 route_based = APIRouter()
 
@@ -12,11 +12,12 @@ route_based = APIRouter()
     description="Route Home",
     name="Route Name"
 )
-async def routeHome():
+@limiter.limit("10 per hour")  # 10 requisições por hora
+async def routeHome(request: Request):
     app_logger.info(
         msg="Route /test funcionando"
     )
-    return {"Hello Word"}
+    return {"Hello Word!"}
 
 
 @route_based.get(
@@ -26,28 +27,29 @@ async def routeHome():
     name="Route no limit request",
     response_description="No Limit Request"
 )
-async def index():
+@limiter.limit("5 per second;50 per minute")  # 5 requisições por segundo, mas no máximo 50 por minuto
+async def index(request: Request):
     return {"msg": "This endpoint has no limits."}
 
 @route_based.get(
     path="/search",
     status_code=status.HTTP_200_OK,
-    dependencies=[Depends(RateLimiter(times=2, seconds=5))],
     description="Rota com limit de requisicoes",
     name="Route with limit request",
     response_description="With Limit Request"
 )
-async def search_handler():
+@limiter.limit("5 per second;50 per minute")  # 5 requisições por segundo, mas no máximo 50 por minuto
+async def search_handler(request: Request):
     return {"msg": "This endpoint has a rate limit of 2 requests per 5 seconds."}
 
 @route_based.get(
     path="/upload",
-    dependencies=[Depends(RateLimiter(times=3, seconds=10))],
     description="Rota com limit de requisicoes",
     name="Route with limit request",
     response_description="With Limit Request"
 )
-async def upload_handler():
+@limiter.limit("1 per second;50 per minute")  # 1 requisições por segundo, mas no máximo 50 por minuto
+async def upload_handler(request: Request):
     return {"msg": "This endpoint has a rate limit of 2 requests per 10 seconds."}
 
 
