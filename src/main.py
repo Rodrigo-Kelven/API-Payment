@@ -11,7 +11,7 @@ from core.routes.all_routes import all_routes
 
 
 app = FastAPI(
-    title="API Library with FastAPI",
+    title="API Based with FastAPI",
     debug=True,
     summary="Api Library",
     version="1.1.15",

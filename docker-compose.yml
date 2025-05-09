@@ -14,7 +14,7 @@ services:
 
   db:
     image: postgres:17
-    container_name: my-db
+    container_name: my-db # nome do container do banco
     networks:
       - app-network  # Conectando à rede personalizada
     environment:
