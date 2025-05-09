@@ -93,11 +93,7 @@ Baseado na ideia de facilitar a crição de apis do absoluto, este projeto é um
 
 
 ## Subindo projeto com Docker:
-### Docker
-```bash
-  docker build -t myapp .
-  docker run -p 8000:8000 myapp
-```
+
 ### Docker Compose
 ```bash
   docker-compose build
