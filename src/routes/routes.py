@@ -4,8 +4,6 @@ from typing import List
 from core.config.config import app_logger, limiter
 import os
 
-TESTING = os.getenv("TESTING", "0") == "1"
-
 route_based = APIRouter()
 
 
