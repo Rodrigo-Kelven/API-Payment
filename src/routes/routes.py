@@ -32,6 +32,8 @@ async def routeHome(request: Request):
 async def index(request: Request):
     return {"msg": "This endpoint has no limits."}
 
+
+
 @route_based.get(
     path="/search",
     status_code=status.HTTP_200_OK,
@@ -43,6 +45,8 @@ async def index(request: Request):
 async def search_handler(request: Request):
     return {"msg": "This endpoint has a rate limit of 2 requests per 5 seconds."}
 
+
+
 @route_based.get(
     path="/upload",
     description="Rota com limit de requisicoes",
@@ -52,6 +56,7 @@ async def search_handler(request: Request):
 @limiter.limit("1 per second;50 per minute")  # 1 requisições por segundo, mas no máximo 50 por minuto
 async def upload_handler(request: Request):
     return {"msg": "This endpoint has a rate limit of 2 requests per 10 seconds."}
+
 
 
 # Simulando uma lista de itens
