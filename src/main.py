@@ -8,28 +8,6 @@ from core.config.config_db import engine_auth, Base_auth
 from core.config.config import  db_logger
 from core.routes.all_routes import all_routes
 
-from contextlib import asynccontextmanager
-
-
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # STARTUP
-    try:
-        async with engine_auth.begin() as conn:
-            await conn.run_sync(Base_auth.metadata.create_all)
-            db_logger.info("Tabela UserDB criada com sucesso.")
-    except Exception as e:
-        db_logger.error(f"Erro ao criar tabelas: {str(e)}")
-
-    yield  # Aqui o FastAPI roda a aplicação
-
-    # SHUTDOWN
-    await engine_auth.dispose()
-    db_logger.info("Conexões com os bancos de dados encerradas.")
-
-
 
 
 app = FastAPI(
@@ -37,11 +15,29 @@ app = FastAPI(
     debug=True,
     summary="Api Library",
     version="1.1.15",
-    lifespan=lifespan,
     description="A Api Library é uma API Library projetada para facilitar a integração de diferentes serviços e plataformas," \
                 "permitindo que desenvolvedores criem soluções robustas e escaláveis. Com uma arquitetura modular e flexível," \
                 "a Api Library oferece uma ampla gama de funcionalidades para gerenciar dados, realizar autenticação, processar pagamentos e muito mais.",
 )
+
+@app.on_event("startup")
+async def startup_event():
+    try:
+        # Criação das tabelas no banco de dados de usuários
+        async with engine_auth.begin() as conn:
+            await conn.run_sync(Base_auth.metadata.create_all)
+            db_logger.info("Tabela UserDB criada com sucesso.")
+
+
+    except Exception as e:
+        db_logger.error(f"Erro ao criar tabelas: {str(e)}.")
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    await engine_auth.dispose()
+    db_logger.info("Conexões com os bancos de dados encerradas.")
+
 
 
 # Adiciona as rotas
