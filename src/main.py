@@ -20,6 +20,7 @@ app = FastAPI(
                 "a Api Library oferece uma ampla gama de funcionalidades para gerenciar dados, realizar autenticação, processar pagamentos e muito mais.",
 )
 
+
 @app.on_event("startup")
 async def startup_event():
     try:
