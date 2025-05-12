@@ -107,6 +107,6 @@ class LogRequestMiddleware(BaseHTTPMiddleware):
 limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["5 per minute"],
-    storage_uri="redis://my-redis:6379/2",
+    #storage_uri="redis://my-redis:6379/2", # esta comentado pois estava atrapalhando os testes
     )
 

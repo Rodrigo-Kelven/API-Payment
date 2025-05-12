@@ -2,6 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from fastapi_limiter.depends import RateLimiter
 from typing import List
 from core.config.config import app_logger, limiter
+import os
+
+TESTING = os.getenv("TESTING", "0") == "1"
 
 route_based = APIRouter()
 
@@ -14,10 +17,10 @@ route_based = APIRouter()
 )
 @limiter.limit("10 per hour")  # 10 requisições por hora
 async def routeHome(request: Request):
-    app_logger.info(
-        msg="Route /test funcionando"
-    )
-    return {"Hello Word!"}
+    app_logger.info(msg="Route /test funcionando")
+
+    return {"message": "Hello Word!"}
+
 
 
 @route_based.get(
