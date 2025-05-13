@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Enum, String, Boolean, Enum as SQLAlchemyEnum
+from sqlalchemy import Column, Enum, String, Boolean, Enum as SQLAlchemyEnum, Integer
 from core.config.config_db import Base_auth as Base
 from enum import Enum as PyEnum
 
@@ -14,6 +14,7 @@ class Role(PyEnum):
 class UserDB(Base):
     __tablename__ = "users"
 
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     username = Column(String, primary_key=True, unique=True, index=True, doc="Username do usuario, deve ser unico!")
     full_name = Column(String, index=True, doc="Nome completo do user")
     email = Column(String, unique=True, index=True, doc="Email do usuario, deve ser unico!")
@@ -21,3 +22,4 @@ class UserDB(Base):
     disabled = Column(Boolean, default=False, doc="Estado do usuario, ativo/inativo")
     role = Column(SQLAlchemyEnum(Role), default=Role.admin, doc="Permissões do usuário: 'user', 'admin', ou 'moderator'")
     
+

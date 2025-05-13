@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, status, Form, Request
-from core.schemas.schemas import Token, User, UserResponse, UserResponseCreate, UserResponseEdit
+from core.schemas.schemas import Token, User, UserResponse, UserResponseCreate, UserResponseEdit, UserResponseCreate2
 from core.config.config_db import AsyncSessionLocal
 from typing import List, Annotated
 from core.auth.auth import OAuth2PasswordRequestForm, get_current_active_user, check_permissions, Role
@@ -59,12 +59,12 @@ async def read_own_items(current_user: Annotated[User , Depends(get_current_acti
 @routes_auth_auten.post(
     path="/user/register/",
     status_code=status.HTTP_201_CREATED,
-    response_model=UserResponseCreate,
+    response_model=UserResponseCreate2,
     response_description="Create user",
     description="Route create user",
     name="Route create user"
 )
-@limiter.limit("20/minute") # O ideal é 5
+#@limiter.limit("20/minute") # O ideal é 5
 async def create_user(
     request: Request,
     username: str = Form(...),

@@ -39,6 +39,12 @@ class UserResponseCreate(BaseModel):
     email: str
     full_name: str
 
+class UserResponseCreate2(BaseModel):
+    id: int
+    username: str
+    email: str
+    full_name: str
+
 
 class UserInDB(User):
     hashed_password: str

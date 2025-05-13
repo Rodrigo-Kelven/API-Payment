@@ -105,9 +105,9 @@ class ServicesAuth:
                 auth_logger.warning(msg="Erro ao criar usuário. Verifique os dados fornecidos.")
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Erro ao criar usuário. Verifique os dados fornecidos.")
 
-            # except Exception as e:
+            #except Exception as e:
             #     # Log de erros gerais e lançamento de exceção
-            #     raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Erro inesperado: {str(e)}")
+            #    raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Erro inesperado: {str(e)}")
     
 
     # isto sera desativado, esta funcionalidade existira no painel de admin
