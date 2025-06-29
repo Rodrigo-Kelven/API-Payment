@@ -13,11 +13,10 @@ from core.routes.all_routes import all_routes
 app = FastAPI(
     title="API Based with FastAPI",
     debug=True,
-    summary="Api Library",
-    version="1.1.15",
-    description="A Api Library é uma API Library projetada para facilitar a integração de diferentes serviços e plataformas," \
-                "permitindo que desenvolvedores criem soluções robustas e escaláveis. Com uma arquitetura modular e flexível," \
-                "a Api Library oferece uma ampla gama de funcionalidades para gerenciar dados, realizar autenticação, processar pagamentos e muito mais.",
+    summary="Api Payment",
+    version="0.0.5",
+    description="A Api Payment é uma API projetada para facilitar a integração de diferentes serviços e plataformas," \
+                "permitindo que desenvolvedores criem soluções robustas e escaláveis. Com uma arquitetura modular e flexível." \
 )
 
 
