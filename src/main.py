@@ -11,7 +11,7 @@ from core.routes.all_routes import all_routes
 
 
 app = FastAPI(
-    title="API Based with FastAPI",
+    title="API Payment with FastAPI",
     debug=True,
     summary="Api Payment",
     version="0.0.5",
