@@ -1,5 +1,5 @@
 # Api Payment
-## Versão 1.1.15
+## Versão 0.0.5
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
 ![FastAPI](https://img.shields.io/badge/FastAPI-%23FF4F00.svg?style=for-the-badge&logo=fastapi&logoColor=white)
 ![GraphQL](https://img.shields.io/badge/GraphQL-%23E10098.svg?style=for-the-badge&logo=graphql&logoColor=white)
@@ -80,17 +80,53 @@ Baseado na ideia de facilitar a crição de apis do absoluto, este projeto é um
 
 ## Estrutura do projeto.
     src/
-    ├── config/
-    │   ├── config.py          # Configurações da aplicação (ex: DB, API keys)
-    ├── main.py                # Ponto de entrada da aplicação FastAPI
-    ├── models/
-    │   └── models.py          # Definições de modelos de dados (ex: ORM)
-    ├── routes/
-    │   ├── all_routes.py      # Agrupamento de todas as rotas
-    │   └── routes.py          # Definições de rotas específicas
-    ├── schemas/
-    │   └── schemas.py         # Definições de esquemas de dados (ex: Pydantic)
-    └── scr.sh                 # Script de inicialização ou automação
+    ├── core
+    │   ├── auth
+    │   │   ├── auth.py
+    │   │   ├── __init__.py
+    │   ├── config
+    │   │   ├── config_db.py
+    │   │   ├── config.py
+    │   │   ├── __init__.py
+    │   ├── __init__.py
+    │   ├── models
+    │   │   ├── __init__.py
+    │   │   ├── models.py
+    │   ├── routes
+    │   │   ├── all_routes.py
+    │   │   ├── __init__.py
+    │   │   └── routes.py
+    │   ├── schemas
+    │   │   ├── __init__.py
+    │   │   └── schemas.py
+    │   ├── services
+    │   │   ├── __init__.py
+    │   │   └── service.py
+    │   └── task_email
+    │       └── background.py
+    ├── logs
+    │   ├── app.log
+    │   ├── auth.log
+    │   └── db.log
+    ├── main.py
+    ├── models
+    │   └── models.py
+    ├── payment
+    │   ├── config.py
+    │   ├── models.py
+    │   └── routes.py
+    ├── pytest.ini
+    ├── requirements.txt
+    ├── routes
+    │   ├── all_routes.py
+    │   ├── __init__.py
+    │   └── routes.py
+    ├── schemas
+    │   └── schemas.py
+    └── tests
+        ├── __init__.py
+        ├── test_route_home.py
+        └── test_route_user.py
 
 
 ## Subindo projeto com Docker:
